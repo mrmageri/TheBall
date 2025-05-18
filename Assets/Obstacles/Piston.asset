@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572fe785751f25248be3ba2e2cdea9fd, type: 3}
+  m_Name: Piston
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 5e326f7241aa947499feb0f5f7def05e, type: 3}
+  obstacleName: Piston
+  obstacle: {fileID: 3992602333400196792, guid: 2df7f4510a5dc7e4f978ab213a996035, type: 3}

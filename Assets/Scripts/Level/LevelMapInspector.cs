@@ -40,11 +40,10 @@ namespace Level
                     
                     //If cell is true -> Green, if sell is false and is in the map center -> yellow else default
                     GUI.color = levelManager.cellMap[x, y] ? Color.green : x == LevelManager.XMapSize/2 && y == LevelManager.YMapSize/2 ? Color.yellow : savedColor;
-
                     //GUI.color = levelManager.cellMap[x, y] ? Color.green : savedColor;
-
                     if (GUI.Button(drawRect, "")) {
                         levelManager.cellMap[x, y] ^= true;
+                        EditorUtility.SetDirty(levelManager);
                     }
 
                     GUI.color = savedColor;
@@ -60,8 +59,17 @@ namespace Level
             {
                 levelManager.ResetMap(true);
             }
+            
+            if (GUILayout.Button("Generate Cells"))
+            {
+                levelManager.GenerateCells();
+            }
+            
+            if (GUILayout.Button("Clear Cells"))
+            {
+                levelManager.ClearCells();
+            }
 
-            EditorUtility.SetDirty(levelManager);
 
         }
         
