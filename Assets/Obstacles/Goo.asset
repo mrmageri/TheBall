@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 572fe785751f25248be3ba2e2cdea9fd, type: 3}
-  m_Name: Beam
+  m_Name: Goo
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 9d20eea6efb235044bb682397d13cbfc, type: 3}
-  obstacleName: Beam
-  obstacle: {fileID: 6746811786824052676, guid: 864afba7ed81f2d46a915de9a5995823, type: 3}
+  icon: {fileID: 21300000, guid: 3d2abc94f3873dd499024d9812ff61ad, type: 3}
+  obstacleName: Slowing Goo
+  obstacle: {fileID: 3359792536463606820, guid: fdfad3dcfdae10c458e0c361bd736bd7, type: 3}

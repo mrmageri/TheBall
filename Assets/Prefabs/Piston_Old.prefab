@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 3412826450344062159}
   - component: {fileID: 5454754258822566521}
   m_Layer: 7
-  m_Name: Piston
+  m_Name: Piston_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0.45}
 --- !u!114 &5458327349056288992
 MonoBehaviour:
@@ -364,11 +364,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001b5786c9086ab42970c5dccb4d1f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 8
   rotationDelta: 90
   isMovable: 1
   punchForce: 7.5
-  _particle: {fileID: 0}
 --- !u!65 &3412826450344062159
 BoxCollider:
   m_ObjectHideFlags: 0

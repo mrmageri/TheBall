@@ -4,7 +4,8 @@ namespace Objects
 {
     public class SlowingGoo : ObstacleObject
     {
-        [SerializeField] private float punchForce;
+        [SerializeField] private float velocityDivider;
+        [SerializeField] private float velocityMaxStep;
         private Rigidbody _playerRb;
 
         private void OnTriggerEnter(Collider other)
@@ -12,7 +13,14 @@ namespace Objects
             if (other.CompareTag("Player"))
             {
                 if (_playerRb == null) if (other.TryGetComponent(out Rigidbody rb)) _playerRb = rb;
-                _playerRb.linearVelocity *= punchForce;
+                if (_playerRb.linearVelocity.magnitude >= velocityMaxStep)
+                {
+                    _playerRb.linearVelocity /= (velocityDivider*2);
+                }
+                else
+                {
+                    _playerRb.linearVelocity /= velocityDivider;
+                }
             }
         }
     }

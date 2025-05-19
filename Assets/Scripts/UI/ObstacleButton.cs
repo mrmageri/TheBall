@@ -31,6 +31,11 @@ namespace UI
             SetObstacleAmount(amount);
         }
 
+        public void AddObstacleAmount()
+        {
+            SetObstacleAmount(_obstacleAmount+1);
+        }
+
         private void SetObstacleAmount(int newAmount)
         {
             _obstacleAmount = newAmount;

@@ -95,9 +95,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -458,5 +458,4 @@ MonoBehaviour:
   button: {fileID: 7007802300125246345}
   amountText: {fileID: 5941064946659514076}
   nameText: {fileID: 7568896173527534078}
-  obstacleObj: {fileID: 0}
   spawnPos: {x: 0, y: 100, z: 0}

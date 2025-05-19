@@ -6,21 +6,27 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField] private LayerMask cellLayer;
     [SerializeField] private LayerMask objectLayer;
     private Camera _camera;
-    private const float ReachDistance = 50f;
     private GameObject _selectedGameObject;
     private ObstacleObject _selectedObstacleObject;
     private bool _hasSelectedObject;
     private Cell _currentCell;
     private bool _tookObject;
+    private ObstacleManager _obstacleManager;
+    
+    private const float ReachDistance = 50f;
+
+
     
     private void Awake()
     {
+        _obstacleManager = GetComponent<ObstacleManager>();
         _camera = Camera.main;
     }
     private void Update()
     {
         SelectCell();
         if(Input.GetMouseButton((int) MouseButton.Left) && !_tookObject) PlaceObject();
+        if (Input.GetKeyDown(KeyCode.R) && _hasSelectedObject) RemoveObject();
     }
 
     public void SetSelectedObject(GameObject newObj)
@@ -71,6 +77,18 @@ public class ObjectPlacer : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void RemoveObject()
+    {
+        if (_selectedObstacleObject.GetMovableStatus())
+        {
+            _obstacleManager.ReturnObstacle(_selectedObstacleObject.GetId());
+            Destroy(_selectedGameObject);
+            _hasSelectedObject = false;
+            _selectedGameObject = null;
+            _selectedObstacleObject = null;
         }
     }
 

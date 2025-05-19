@@ -5,15 +5,16 @@ namespace Level
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private LayerMask cellLayerMask;
         [SerializeField] private GameObject[] cellsObjects;
         public const int YMapSize = 9;
         public const int XMapSize = 15;
         [HideInInspector] public MultiBoolArray cellMap;
+        private ObstacleManager _obstacleManager;
         
         
          private void Awake()
          {
+             _obstacleManager = GetComponent<ObstacleManager>();
             GenerateCells();
          }
         
@@ -28,7 +29,7 @@ namespace Level
                     if (cellMap[i, j]) cellsObjects[j * XMapSize + i].SetActive(true);
                 }
             }
-            SetObstacleObjects();
+            _obstacleManager.PresetObstacleObjects();
         }
 
         public void ClearCells()
@@ -54,22 +55,6 @@ namespace Level
                         cellMap[i, j] = isFull;
                     }
                 }
-        }
-
-        private void SetObstacleObjects()
-        {
-            foreach (var elem in FindObjectsByType<ObstacleObject>(FindObjectsSortMode.InstanceID))
-            {
-                if (Physics.Raycast(elem.transform.position, -elem.transform.up, out RaycastHit hit, 50f,
-                    cellLayerMask))
-                {
-                    if (hit.collider.gameObject.TryGetComponent(out Cell cell))
-                    {
-                        elem.SetCell(cell);
-                        cell.PlaceObject();
-                    }
-                }
-            }
         }
     }
 }

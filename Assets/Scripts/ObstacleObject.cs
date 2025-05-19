@@ -1,7 +1,9 @@
 using UnityEngine;
-
 public class ObstacleObject : MonoBehaviour
 {
+    [Header("ID - Preset it!")]    
+    [SerializeField] private int id;
+    [Header("Moving and Rotating")]  
     [SerializeField] private float rotationDelta;
     [SerializeField] private bool isMovable = true;
     private bool _isSelected;
@@ -26,6 +28,11 @@ public class ObstacleObject : MonoBehaviour
     public bool GetMovableStatus()
     {
         return isMovable;
+    }
+
+    public int GetId()
+    {
+        return id;
     }
     
     public void SetMovableStatus(bool status)
