@@ -1,3 +1,4 @@
+using Obstacle;
 using UnityEngine;
 
 namespace Objects

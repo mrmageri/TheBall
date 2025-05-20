@@ -1,3 +1,4 @@
+using Obstacle;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -13,12 +14,14 @@ namespace UI
         [SerializeField] private Vector3 spawnPos;
         private ObstacleScrObj _obstacleObj;
         private int _obstacleAmount;
-        private ObjectPlacer _objectPlacer;
+        private ObstaclePlacer _obstaclePlacer;
         private GameObject _thisObstacle;
+        private ObstacleInHandUI _obstacleInHand;
 
         private void Awake()
         {
-            _objectPlacer = FindFirstObjectByType<ObjectPlacer>();
+            _obstaclePlacer = FindFirstObjectByType<ObstaclePlacer>();
+            _obstacleInHand = FindFirstObjectByType<ObstacleInHandUI>();
         }
 
         public void SetObstacleSettings(int amount, ObstacleScrObj newObstacle)
@@ -36,21 +39,24 @@ namespace UI
             SetObstacleAmount(_obstacleAmount+1);
         }
 
+        public Sprite GetObstacleSprite()
+        {
+            return _obstacleObj.icon;
+        }
+
         private void SetObstacleAmount(int newAmount)
         {
             _obstacleAmount = newAmount;
             amountText.text = _obstacleAmount.ToString();
         }
-        
+
         public void OnButtonClick()
         {
+            if(_obstacleAmount == 0) return;
             _obstacleAmount--;
-            if (_obstacleAmount < 0)
-            {
-                button.interactable = false;
-                return;
-            }
-            _objectPlacer.SetSelectedObject(Instantiate(_thisObstacle,spawnPos,quaternion.identity));
+            _obstaclePlacer.SetSelectedObject(Instantiate(_thisObstacle,spawnPos,quaternion.identity));
+            _obstacleInHand.gameObject.SetActive(true);
+            _obstacleInHand.SetObstacleInHand(_obstacleObj.icon);
             amountText.text = _obstacleAmount.ToString();
         }
     }
