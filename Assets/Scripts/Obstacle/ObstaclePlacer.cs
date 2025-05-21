@@ -16,6 +16,7 @@ namespace Obstacle
         private bool _tookObject;
         private ObstacleManager _obstacleManager;
         private ObstacleInHandUI _obstacleInHand;
+        private GameManager _gameManager;
 
         private bool _enabledPlacing = true;
     
@@ -27,6 +28,7 @@ namespace Obstacle
         {
             _obstacleInHand = FindFirstObjectByType<ObstacleInHandUI>();
             _obstacleManager = GetComponent<ObstacleManager>();
+            _gameManager = GetComponent<GameManager>();
             _camera = Camera.main;
         }
         private void Update()
@@ -98,6 +100,7 @@ namespace Obstacle
 
         public void RemoveObject()
         {
+            if(!_hasSelectedObject) return;
             if (_selectedObstacleObject.GetMovableStatus())
             {
                 _obstacleInHand.SetObstacleInHand();
@@ -123,6 +126,7 @@ namespace Obstacle
                 _hasSelectedObject = false;
                 _selectedGameObject = null;
                 _selectedObstacleObject = null;
+                _gameManager.SaveLevel();
             }
         }
     }

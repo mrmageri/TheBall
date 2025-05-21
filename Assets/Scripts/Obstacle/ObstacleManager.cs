@@ -12,7 +12,7 @@ namespace Obstacle
         [SerializeField] private LayerMask cellLayerMask;
 
 
-        private void Awake()
+        /*private void Awake()
         {
             _buttons = new ObstacleButton[objectUis.Length];
             for (int i = 0; i < objectUis.Length; i++)
@@ -22,6 +22,19 @@ namespace Obstacle
                 _buttons[i] = newButton;
                 newButton.SetObstacleSettings(objectUis[i].amount,objectUis[i].obstacleObject);
             }
+        }*/
+
+        public bool GenerateObstacleButtons()
+        {
+            _buttons = new ObstacleButton[objectUis.Length];
+            for (int i = 0; i < objectUis.Length; i++)
+            {
+                GameObject obj =  Instantiate(buttonGameObject, layoutTransform);
+                ObstacleButton newButton = obj.GetComponent<ObstacleButton>();
+                _buttons[i] = newButton;
+                newButton.SetObstacleSettings(objectUis[i].amount,objectUis[i].obstacleObject);
+            }
+            return true;
         }
     
         public void PresetObstacleObjects()
@@ -40,7 +53,7 @@ namespace Obstacle
                 }
             }
         }
-
+        
         public ObstacleButton GetObstacleButton(int id)
         {
             if(id >= _buttons.Length) return null;

@@ -39,6 +39,11 @@ namespace UI
             SetObstacleAmount(_obstacleAmount+1);
         }
 
+        public void DecreaseObstacleAmount()
+        {
+            SetObstacleAmount(_obstacleAmount-1);
+        }
+
         public Sprite GetObstacleSprite()
         {
             return _obstacleObj.icon;
