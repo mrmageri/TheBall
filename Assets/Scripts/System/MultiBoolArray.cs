@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace System
 {
-    [System.Serializable]public class MultiBoolArray{
+    [Serializable]public class MultiBoolArray{
 
         [SerializeField]
         private int width;

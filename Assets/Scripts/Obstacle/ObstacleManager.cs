@@ -37,7 +37,7 @@ namespace Obstacle
             return true;
         }
     
-        public void PresetObstacleObjects()
+        public void PresetObstacleObjects(bool firstTime = true)
         {
             foreach (var elem in FindObjectsByType<ObstacleObject>(FindObjectsSortMode.InstanceID))
             {
@@ -47,7 +47,7 @@ namespace Obstacle
                     if (hit.collider.gameObject.TryGetComponent(out Cell cell))
                     {
                         elem.SetCell(cell);
-                        elem.SetMovableStatus(false); //TODO REMOVE and Remake
+                        if(firstTime) elem.SetMovableStatus(false); //TODO REMOVE and Remake
                         cell.PlaceObject();
                     }
                 }

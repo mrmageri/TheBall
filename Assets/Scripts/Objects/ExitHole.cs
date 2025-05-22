@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,13 @@ namespace Objects
     {
         [SerializeField] private ParticleSystem winningParticle;
         [SerializeField] private float winningDelayDuration;
+        private GameManager _gameManager;
         private bool _won;
+
+        private void Awake()
+        {
+            _gameManager = FindFirstObjectByType<GameManager>();
+        }
 
         private void Update()
         {
@@ -26,6 +33,7 @@ namespace Objects
             {
                 winningParticle.Play();
                 _won = true;
+                _gameManager.WinGame();
                 StartCoroutine(WinningDelay());
             }
         }

@@ -1,11 +1,13 @@
+using Level;
 using UnityEditor;
 using UnityEngine;
 
-namespace Level
+namespace Editor
 {
     [CustomEditor(typeof(LevelManager))]
-    public class LevelInspector : Editor
+    public class LevelInspector : UnityEditor.Editor
     {
+        
         private bool _isEditing;
         public override void OnInspectorGUI() {
             
@@ -39,10 +41,10 @@ namespace Level
                     var savedColor = GUI.color;
                     
                     //If cell is true -> Green, if sell is false and is in the map center -> yellow else default
-                    GUI.color = levelManager.cellMap[x, y] ? Color.green : x == LevelManager.XMapSize/2 && y == LevelManager.YMapSize/2 ? Color.yellow : savedColor;
+                    GUI.color = levelManager.cellMap[y * LevelManager.XMapSize + x] ? Color.green : x == LevelManager.XMapSize/2 && y == LevelManager.YMapSize/2 ? Color.yellow : savedColor;
                     //GUI.color = levelManager.cellMap[x, y] ? Color.green : savedColor;
                     if (GUI.Button(drawRect, "")) {
-                        levelManager.cellMap[x, y] ^= true;
+                        levelManager.cellMap[y * LevelManager.XMapSize + x] ^= true;
                         EditorUtility.SetDirty(levelManager);
                     }
 

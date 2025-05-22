@@ -77,6 +77,7 @@ namespace SaveSystem
                         obstacleManager.GetObstacleButton(obstacleSaves[i].obstacleID).DecreaseObstacleAmount();
                     }
                 }
+                obstacleManager.PresetObstacleObjects(false);
             }
         }
 

@@ -1,4 +1,3 @@
-using System;
 using Obstacle;
 using UnityEngine;
 
@@ -9,14 +8,14 @@ namespace Level
         [SerializeField] private GameObject[] cellsObjects;
         public const int YMapSize = 9;
         public const int XMapSize = 15;
-        [HideInInspector] public MultiBoolArray cellMap;
-        private ObstacleManager _obstacleManager;
+        [SerializeField] public bool[] cellMap = new bool[YMapSize * XMapSize];
+        [SerializeField] private ObstacleManager obstacleManager;
         
         
          private void Awake()
-         {
-             _obstacleManager = GetComponent<ObstacleManager>();
-            GenerateCells();
+         { 
+             obstacleManager = GetComponent<ObstacleManager>();
+             GenerateCells();
          }
         
 
@@ -27,10 +26,10 @@ namespace Level
             {
                 for (int j = 0; j < YMapSize; j++)
                 {
-                    if (cellMap[i, j]) cellsObjects[j * XMapSize + i].SetActive(true);
+                    if (cellMap[j * XMapSize + i]) cellsObjects[j * XMapSize + i].SetActive(true);
                 }
             }
-            _obstacleManager.PresetObstacleObjects();
+            obstacleManager.PresetObstacleObjects();
         }
 
         public void ClearCells()
@@ -48,12 +47,12 @@ namespace Level
 
         public void ResetMap(bool isFull = false)
         {
-            cellMap = new MultiBoolArray(XMapSize, YMapSize);
+            cellMap = new bool[XMapSize * YMapSize];
                 for (int i = 0; i < XMapSize; i++)
                 {
                     for (int j = 0; j < YMapSize; j++)
                     {
-                        cellMap[i, j] = isFull;
+                        cellMap[j * XMapSize + i] = isFull;
                     }
                 }
         }
